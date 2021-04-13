@@ -1,0 +1,259 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Лаба_3
+{
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            Military military = new Military("Antonov",120M,"Aluminium","24",4000);
+            Passenger passenger = new Passenger("Boeing",747M,"Aluminium","747",452);
+            Auto auto = new Auto("Buhanka",1000,"red","petrol",1250);
+            Trains trains = new Trains("Huindai",12M,"grey","electric",450);
+
+            Console.WriteLine(military.ToString());
+            Console.WriteLine(passenger.ToString());
+            Console.WriteLine(auto.ToString());
+            Console.WriteLine(trains.ToString());
+
+            Console.WriteLine();
+            Console.ReadKey();
+            
+        }
+
+    }
+    }
+
+    public abstract class Product
+    {
+        protected string name;
+        protected decimal price;
+
+        public Product()
+        {
+            this.name = "";
+            this.price = 0;
+        }
+        public Product(string name, decimal price)
+        {
+            Name = name;
+            Price = price;
+        }
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+
+        public decimal Price
+        {
+            get { return price; }
+            set { price = value; }
+        }
+       
+        public override string ToString()
+        { 
+            return $"{base.ToString()}, Name:{name}, Price:{price}";
+        }
+    }
+    public class Aircraft: Product
+    {
+        protected string model;
+        protected string material;
+
+        public Aircraft()
+        {
+           
+            this.material = "";
+            this.model = "";
+        }
+        public Aircraft(string name, decimal price, string material, string model) : base(name, price)
+        {
+            this.material = material;
+            this.model = model;
+          
+        }
+
+
+        public string Material
+        {
+            get { return material; }
+            set
+            {
+                material = value;
+            }
+        }
+        public string Model
+        {
+            get { return model; }
+            set
+            {
+                model = value;
+            }
+        }
+
+         public override string ToString()
+          {
+              return $"{base.ToString()}, Material:{material}, Model:{model}";
+
+          }
+    }
+
+    public class GroundVehicles : Product
+    {
+        protected string color;
+        protected string typeOfEngine;
+
+        public GroundVehicles()
+        {
+            this.color = "";
+            this.typeOfEngine = "";
+        }
+        public GroundVehicles(string name, decimal price, string color, string typeOfEngine) : base(name, price)
+        {
+            this.color = color;
+            this.typeOfEngine = typeOfEngine;
+        }
+
+
+        public string Color
+        {
+            get { return color; }
+            set
+            {
+                color = value;
+            }
+        }
+        public string TypeOfEngine
+        {
+            get { return typeOfEngine; }
+            set
+            {
+                typeOfEngine = value;
+            }
+        }
+
+        public override string ToString()
+        {
+            return $"{base.ToString()}, color:{color}, typeOfEngine:{typeOfEngine}";
+
+        }
+    }
+
+    public class Auto : GroundVehicles
+    {
+        protected decimal weight;
+
+        public Auto()
+        {
+            this.weight = 0;
+            
+        }
+        public Auto(string name, decimal price, string color, string typeOfEngine,decimal weight) : base(name, price,color,typeOfEngine)
+        {
+            this.weight = weight;
+        }
+
+
+        public decimal Weight
+        {
+            get { return weight; }
+            set
+            {
+                weight = value;
+            }
+        }
+
+        public override string ToString()
+        {
+            return $"{base.ToString()}, weight:{weight}";
+        }
+    }
+
+    public class Trains : GroundVehicles
+    {
+        protected int maxSpeed;
+
+        public Trains()
+        {
+            this.maxSpeed = 0;
+        }
+        public Trains(string name, decimal price, string color, string typeOfEngine,int maxSpeed) : base(name, price,color,typeOfEngine)
+        {
+            this.maxSpeed = maxSpeed;
+            this.typeOfEngine = typeOfEngine;
+        }
+        public int MaxSpeed
+        {
+            get { return maxSpeed; }
+            set
+            {
+                maxSpeed = value;
+            }
+        }
+
+        public override string ToString()
+        {
+            return $"{base.ToString()}, maxSpeed:{maxSpeed}";
+
+        }
+    }
+
+    public class Passenger : Aircraft
+    {
+        protected int countOfPassengers;
+        public Passenger()
+        {
+            this.countOfPassengers = 0;
+        }
+        public Passenger(string name, decimal price, string material, string model,int countOfPassengers) : base(name, price,material,model)
+        {
+            this.countOfPassengers = countOfPassengers;
+        }
+
+        public int CountOfPassengers
+        {
+            get { return countOfPassengers; }
+            set
+            {
+                countOfPassengers = value;
+            }
+        }
+
+        public override string ToString()
+        {
+            return $"{base.ToString()}, countOfPassengers:{countOfPassengers}";
+        }
+    }
+
+    public class Military : Aircraft
+    {
+        protected decimal liftingCapacity;
+
+        public Military()
+        {
+            this.liftingCapacity = 0;
+        }
+        public Military(string name, decimal price, string material, string model, decimal liftingCapacity) : base(name, price,material,model)//тут правильно ли бейс? 
+        {
+            this.liftingCapacity = liftingCapacity;
+        }
+        public decimal LiftingCapacity
+        {
+            get { return liftingCapacity; }
+            set
+            {
+                liftingCapacity = value;
+            }
+        }
+        public override string ToString()
+        {
+            return $"{base.ToString()}, LiftingCapacity:{liftingCapacity}";
+        }
+    }
+
+   
+
