@@ -9,10 +9,10 @@ namespace Лаба_3
 
         static void Main(string[] args)
         {
-            Military military = new Military("Antonov",120M,"Aluminium","24",4000);
-            Passenger passenger = new Passenger("Boeing",747M,"Aluminium","747",452);
-            Auto auto = new Auto("Buhanka",1000,"red","petrol",1250);
-            Trains trains = new Trains("Huindai",12M,"grey","electric",450);
+            Military military = new Military("Antonov",120M,9500,700,"gas bombs");
+            Passenger passenger = new Passenger("Boeing",747M,4500,820,452);
+            Auto auto = new Auto("Buhanka",1000,"red","diesel",6);
+            Trains trains = new Trains("Huindai",12M,"grey","electric",9);
 
             Console.WriteLine(military.ToString());
             Console.WriteLine(passenger.ToString());
@@ -25,9 +25,8 @@ namespace Лаба_3
         }
 
     }
-    }
 
-    public abstract class Product
+public abstract class Product
     {
         protected string name;
         protected decimal price;
@@ -53,69 +52,69 @@ namespace Лаба_3
             get { return price; }
             set { price = value; }
         }
-       
+
         public override string ToString()
-        { 
+        {
             return $"{base.ToString()}, Name:{name}, Price:{price}";
         }
     }
-    public class Aircraft: Product
+    public class Aircraft : Product
     {
-        protected string model;
-        protected string material;
+        protected int runwayLenght;
+        protected int flightAltitude;
 
         public Aircraft()
         {
-           
-            this.material = "";
-            this.model = "";
+
+            this.flightAltitude = 0;
+            this.runwayLenght = 0;
         }
-        public Aircraft(string name, decimal price, string material, string model) : base(name, price)
+        public Aircraft(string name, decimal price, int flightAltitude, int runwayLenght) : base(name, price)
         {
-            this.material = material;
-            this.model = model;
-          
+            this.flightAltitude = flightAltitude;
+            this.runwayLenght = runwayLenght;
+
         }
 
 
-        public string Material
+        public int FlightAltitude
         {
-            get { return material; }
+            get { return flightAltitude; }
             set
             {
-                material = value;
+                flightAltitude = value;
             }
         }
-        public string Model
+        public int RunwayLenght
         {
-            get { return model; }
+            get { return runwayLenght; }
             set
             {
-                model = value;
+                runwayLenght = value;
             }
         }
 
-         public override string ToString()
-          {
-              return $"{base.ToString()}, Material:{material}, Model:{model}";
+        public override string ToString()
+        {
+            return $"{base.ToString()}, flightAltitude:{flightAltitude}, runwayLenght:{runwayLenght}";
 
-          }
+        }
     }
 
     public class GroundVehicles : Product
     {
         protected string color;
-        protected string typeOfEngine;
+        protected string powerResource;
 
         public GroundVehicles()
         {
             this.color = "";
-            this.typeOfEngine = "";
+            this.powerResource = "";
         }
-        public GroundVehicles(string name, decimal price, string color, string typeOfEngine) : base(name, price)
+        public GroundVehicles(string name, decimal price, string color, string powerResource) : base(name, price)
         {
             this.color = color;
-            this.typeOfEngine = typeOfEngine;
+            this.powerResource = powerResource;
         }
 
 
@@ -127,77 +126,76 @@ namespace Лаба_3
                 color = value;
             }
         }
-        public string TypeOfEngine
+        public string PowerResource
         {
-            get { return typeOfEngine; }
+            get { return powerResource; }
             set
             {
-                typeOfEngine = value;
+                powerResource = value;
             }
         }
 
         public override string ToString()
         {
-            return $"{base.ToString()}, color:{color}, typeOfEngine:{typeOfEngine}";
+            return $"{base.ToString()}, color:{color}, powerResource:{powerResource}";
 
         }
     }
 
     public class Auto : GroundVehicles
     {
-        protected decimal weight;
+        protected int countOfDoors;
 
         public Auto()
         {
-            this.weight = 0;
-            
+            this.countOfDoors = 0;
+
         }
-        public Auto(string name, decimal price, string color, string typeOfEngine,decimal weight) : base(name, price,color,typeOfEngine)
+        public Auto(string name, decimal price, string color, string powerResource, int countOfDoors) : base(name, price, color, powerResource)
         {
-            this.weight = weight;
+            this.countOfDoors = countOfDoors;
         }
 
 
-        public decimal Weight
+        public int CountOfDoors
         {
-            get { return weight; }
+            get { return countOfDoors; }
             set
             {
-                weight = value;
+                countOfDoors = value;
             }
         }
 
         public override string ToString()
         {
-            return $"{base.ToString()}, weight:{weight}";
+            return $"{base.ToString()}, countOfDoors:{countOfDoors}";
         }
     }
 
     public class Trains : GroundVehicles
     {
-        protected int maxSpeed;
+        protected int countOfCarriage;
 
         public Trains()
         {
-            this.maxSpeed = 0;
+            this.countOfCarriage = 0;
         }
-        public Trains(string name, decimal price, string color, string typeOfEngine,int maxSpeed) : base(name, price,color,typeOfEngine)
+        public Trains(string name, decimal price, string color, string powerResource, int countOfCarriage) : base(name, price, color, powerResource)
         {
-            this.maxSpeed = maxSpeed;
-            this.typeOfEngine = typeOfEngine;
+            this.countOfCarriage = countOfCarriage;
         }
-        public int MaxSpeed
+        public int CountOfCarriage
         {
-            get { return maxSpeed; }
+            get { return countOfCarriage; }
             set
             {
-                maxSpeed = value;
+                countOfCarriage = value;
             }
         }
 
         public override string ToString()
         {
-            return $"{base.ToString()}, maxSpeed:{maxSpeed}";
+            return $"{base.ToString()}, countOfCarriage:{countOfCarriage}";
 
         }
     }
@@ -209,7 +207,7 @@ namespace Лаба_3
         {
             this.countOfPassengers = 0;
         }
-        public Passenger(string name, decimal price, string material, string model,int countOfPassengers) : base(name, price,material,model)
+        public Passenger(string name, decimal price, int flightAltitude, int runwayLenght, int countOfPassengers) : base(name, price, flightAltitude, runwayLenght)
         {
             this.countOfPassengers = countOfPassengers;
         }
@@ -231,29 +229,29 @@ namespace Лаба_3
 
     public class Military : Aircraft
     {
-        protected decimal liftingCapacity;
+        protected string arming;
 
         public Military()
         {
-            this.liftingCapacity = 0;
+            this.arming = "";
         }
-        public Military(string name, decimal price, string material, string model, decimal liftingCapacity) : base(name, price,material,model)//тут правильно ли бейс? 
-        {
-            this.liftingCapacity = liftingCapacity;
+        public Military(string name, decimal price, int flightAltitude, int runwayLenght, string arming) : base(name, price, flightAltitude, runwayLenght)
+            this.arming = arming;
         }
-        public decimal LiftingCapacity
+        public string Arming
         {
-            get { return liftingCapacity; }
+            get { return arming; }
             set
             {
-                liftingCapacity = value;
+                arming = value;
             }
         }
         public override string ToString()
         {
-            return $"{base.ToString()}, LiftingCapacity:{liftingCapacity}";
+            return $"{base.ToString()}, arming:{arming}";
         }
     }
+}
 
    
 
